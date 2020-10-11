@@ -6,11 +6,13 @@ import (
 	"regexp/syntax"
 )
 
+// StringWriter is implemented by types that support writing strings and runes to them
 type StringWriter interface {
 	WriteString(str string) (int, error)
 	WriteRune(r rune) (int, error)
 }
 
+// RegexpWriter supports converting a syntax.Regexp to a string using random values
 type RegexpWriter struct {
 	MaxQuantifierLength int // The maximum length for open-ended quantifiers (*, ?, etc)
 }
