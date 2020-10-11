@@ -22,4 +22,5 @@ import "github.com/pipe01/revregexp
 str := revregexp.Reverse("Hello (World|Everyone)")
 
 fmt.Println(str)
+// Outputs "Hello World" or "Hello Everyone"
 ```
