@@ -24,6 +24,7 @@ func TestReciprocity(t *testing.T) {
 		`[A-Z]foo`,
 		`[A-Z]+foo`,
 		`[A-Z]*foo`,
+		`(one|two)`,
 	}
 
 	for _, r := range rules {

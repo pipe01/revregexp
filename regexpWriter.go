@@ -54,6 +54,9 @@ func (w *RegexpWriter) Write(r *syntax.Regexp, wr StringWriter) error {
 	case syntax.OpAnyCharNotNL:
 		err = w.writeCharClass(anyCharNotNewline, wr)
 
+	case syntax.OpAlternate:
+		err = w.writeAny(r.Sub, wr)
+
 	default:
 		err = fmt.Errorf("unknown syntax operator %d", r.Op)
 	}
@@ -74,6 +77,12 @@ func (w *RegexpWriter) writeCharRange(min, max rune, wr StringWriter) error {
 
 	_, err := wr.WriteRune(rune)
 	return err
+}
+
+func (w *RegexpWriter) writeAny(sub []*syntax.Regexp, wr StringWriter) error {
+	idx := rand.Intn(len(sub))
+
+	return w.Write(sub[idx], wr)
 }
 
 func (w *RegexpWriter) writeTimes(r *syntax.Regexp, min, max int, wr StringWriter) error {
